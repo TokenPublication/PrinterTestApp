@@ -60,7 +60,7 @@ Related functions:  [printDensity](#printDensity),  [setPrintDensity](#setPrintD
 [int printDensity()](#int-printdensity)  
 [void setPrintDensity(int density)](#void-setprintdensityint-density)  
 [void setPrintDensity(int density)](#void-setprintdensityint-density)  
-[void printExternalBitmap(byte[] bitmapArray)](printExternalBitmap)
+[void printExternalBitmap(byte[] bitmapArray)](#void-printExternalBitmapbyte[]-bitmapArray)
 
 [comment]: <> (a tag is placed to enable linking) 
 <a id="printerStatus"></a> 
@@ -226,7 +226,31 @@ if (BitmapChecker.isMonochromeBitmap(byteArray))
 }
 ```
 
-See [definition of print density.](#printDensityDef)
+Following examples use this function
+
+```java
+    static void PrintBitmapReceipt(final byte[] bitmapFile)
+    {
+        PrinterService.getService(printerService -> {
+
+            if (printerService == null) {
+                Log.d(TAG, "Printer Service was null");
+                return;
+            }
+            printerService.printExternalBitmap(bitmapFile);
+            printerService.addSpace(bottomMargin);
+        });
+    }
+
+    static void PrintBitmapReceiptWithStyledStringMethod(final byte[] bitmapFile)
+    {
+        StyledString styledText = new StyledString();
+        styledText.printExternalBitmap(bitmapFile);
+        styledText.addSpace(bottomMargin);
+        styledText.print(PrinterService.getService());
+    }
+```
+
 
 <br/>
 

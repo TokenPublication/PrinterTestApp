@@ -442,11 +442,9 @@ public class Examples {
                 Log.d(TAG, "Printer Service was null");
                 return;
             }
-
+            printerService.printExternalBitmap(bitmapFile);
             printerService.addSpace(bottomMargin);
         });
-
-
     }
 
     static void PrintBitmapReceiptWithStyledStringMethod(final byte[] bitmapFile)
