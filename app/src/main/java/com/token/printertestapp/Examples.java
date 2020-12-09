@@ -443,12 +443,6 @@ public class Examples {
                 return;
             }
 
-            if (BitmapChecker.isMonochromeBitmap(byteArray))
-            {
-                printerService.printExternalBitmap(byteArray);
-            }
-
-
             printerService.addSpace(bottomMargin);
         });
 
