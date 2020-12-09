@@ -1,26 +1,10 @@
    
 - [Introduction](#introduction)
-- [Gettingg Started](#gettingg-started)
 - [Definitions](#definitions)
+- [Getting Started](#getting-started)
 - [Functions](#functions)
   - [Function List](#function-list)
-  - [int printerStatus()](#int-printerstatus)
-  - [int cursorPosition()](#int-cursorposition)
-  - [void setCursorPosition(int pos);](#void-setcursorpositionint-pos)
-  - [void setFontFace(int font)](#void-setfontfaceint-font)
-  - [void setFontSize(int fontSize)](#void-setfontsizeint-fontsize)
-  - [void addTextToLine(String text, Alignment alignment)](#void-addtexttolinestring-text-alignment-alignment)
-  - [void printLine()](#void-printline)
-  - [void drawLine(int thickness, int verticalMargin, int horizontalMargin)](#void-drawlineint-thickness-int-verticalmargin-int-horizontalmargin)
-  - [void printText(String text)](#void-printtextstring-text)
-  - [void printBitmap(String name, int verticalMargin)](#void-printbitmapstring-name-int-verticalmargin)
-  - [void addSpace(int pixelHeight)](#void-addspaceint-pixelheight)
-  - [void addEmptyLines(float lines)](#void-addemptylinesfloat-lines)
-  - [float lineSpacing()](#float-linespacing)
-  - [void setLineSpacing(float f)](#void-setlinespacingfloat-f)
-  - [int printDensity()](#int-printdensity)
-  - [void setPrintDensity(int density)](#void-setprintdensityint-density)
-  - [void printExternalBitmap(byte[] bitmapArray)](#void-printexternalbitmapbyte-bitmaparray)
+
 - [Miscellaneous](#miscellaneous)
   - [Subscribing To 'Printer State Changed' Broadcast](#subscribing-to-printer-state-changed-broadcast)
 - [Known Issues](#known-issues)
@@ -33,21 +17,7 @@ Printer service is a service which provides a simplified api for printer related
 
 <br/>
 
-## Gettingg Started
-
- 1) Copy aar lib file from /app/libs folder into your project  
- 2) Make sure you include aar lib in your Project. In this example project, it is done in /app/.build.gradle file like this:
-
-```groovy
-dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar", "*.aar"])
-    ...
-}
-```
-<br/>
-
 ## Definitions  
-
 
 **Line Width:** Thermal printer has a fixed line width in pixels. It's 48x8, that is 384 pixels. It should be taken into consideration when using functions like drawLine, setCursorPosition, addTextToLine.
 
@@ -65,6 +35,19 @@ dependencies {
 
 Related functions:  [printDensity](#int-printdensity),  [setPrintDensity](#void-setprintdensityint-density)
 
+<br/>
+
+## Getting Started
+
+ 1) Copy aar lib file from /app/libs folder into your project  
+ 2) Make sure you include aar lib in your Project. In this example project, it is done in /app/.build.gradle file like this:
+
+```groovy
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar", "*.aar"])
+    ...
+}
+```
 <br/>
 
 ##  Functions
@@ -228,13 +211,13 @@ Sets line spacing.
 
 ### int printDensity()  
 Returns current print density.  
-See [definition of print density.](#printDensityDef)
+See [definition of print density.](#definitions)
 
 <br/>
 
 ### void setPrintDensity(int density)  
 Sets print density. It can take values from 60 to 140 percent. Values out of this ranges are ignored.  
-See [definition of print density.](#printDensityDef)
+See [definition of print density.](#definitions)
 
 
 <br/>
