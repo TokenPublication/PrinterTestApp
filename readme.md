@@ -8,12 +8,15 @@ Printer service is a service which provides a simplified api for printer related
 
 ## Prerequisites
 
-### Java files
+ 1) Copy aar lib file from /app/libs folder into your project  
+ 2) Make sure you include aar lib in your Project. In this example project, it is done in /app/.build.gradle file like this:
 
-Printer service can be used via [Binder](../../sw/binder) IPC. To achive this, the following files should be added to the java project. Copies of those files can be obtained form the [example project](https://35.205.196.69/3rdParty/PrinterServiceTest).
-
-**Aidl file:** consists definitions of functions that are available in the service.  
-**PrinterDefinitions Class file:** consist a class that includes utilities and definitions for the service usage.
+```groovy
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar", "*.aar"])
+    ...
+}
+```
 
 
 ## Definitions  
