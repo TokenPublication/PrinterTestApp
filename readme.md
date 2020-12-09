@@ -1,10 +1,39 @@
+   
+- [Introduction](#introduction)
+- [Gettingg Started](#gettingg-started)
+- [Definitions](#definitions)
+- [Functions](#functions)
+  - [Function List](#function-list)
+  - [int printerStatus()](#int-printerstatus)
+  - [int cursorPosition()](#int-cursorposition)
+  - [void setCursorPosition(int pos);](#void-setcursorpositionint-pos)
+  - [void setFontFace(int font)](#void-setfontfaceint-font)
+  - [void setFontSize(int fontSize)](#void-setfontsizeint-fontsize)
+  - [void addTextToLine(String text, Alignment alignment)](#void-addtexttolinestring-text-alignment-alignment)
+  - [void printLine()](#void-printline)
+  - [void drawLine(int thickness, int verticalMargin, int horizontalMargin)](#void-drawlineint-thickness-int-verticalmargin-int-horizontalmargin)
+  - [void printText(String text)](#void-printtextstring-text)
+  - [void printBitmap(String name, int verticalMargin)](#void-printbitmapstring-name-int-verticalmargin)
+  - [void addSpace(int pixelHeight)](#void-addspaceint-pixelheight)
+  - [void addEmptyLines(float lines)](#void-addemptylinesfloat-lines)
+  - [float lineSpacing()](#float-linespacing)
+  - [void setLineSpacing(float f)](#void-setlinespacingfloat-f)
+  - [int printDensity()](#int-printdensity)
+  - [void setPrintDensity(int density)](#void-setprintdensityint-density)
+  - [void printExternalBitmap(byte[] bitmapArray)](#void-printexternalbitmapbyte-bitmaparray)
+- [Miscellaneous](#miscellaneous)
+  - [Subscribing To 'Printer State Changed' Broadcast](#subscribing-to-printer-state-changed-broadcast)
+- [Known Issues](#known-issues)
+
+<br/>
+
 ## Introduction
 
 Printer service is a service which provides a simplified api for printer related operations. This document describes usage of the available printer functions.
 
 <br/>
 
-## Prerequisites
+## Gettingg Started
 
  1) Copy aar lib file from /app/libs folder into your project  
  2) Make sure you include aar lib in your Project. In this example project, it is done in /app/.build.gradle file like this:
@@ -15,7 +44,7 @@ dependencies {
     ...
 }
 ```
-
+<br/>
 
 ## Definitions  
 
@@ -34,7 +63,7 @@ dependencies {
 
 >  Excessive energy may cause shortening the life of thermal head, or may cause the paper feed problem, so specify the accurate thermal paper selection and print density selection. When the using thermal paper is different from the one specified or the print density is other than 100%, the reliability of the product specification may not be satisfied. Verify the performance with your actual device before printing.
 
-Related functions:  [printDensity](#printDensity),  [setPrintDensity](#setPrintDensity)
+Related functions:  [printDensity](#int-printdensity),  [setPrintDensity](#void-setprintdensityint-density)
 
 <br/>
 
@@ -60,10 +89,9 @@ void [setLineSpacing](#void-setlinespacingfloat-f)(float f)
 int [printDensity](#int-printdensity)()  
 void [setPrintDensity](#void-setprintdensityint-density)(int density)  
 void [setPrintDensity](#void-setprintdensityint-density)(int density)  
-void [printExternalBitmap](#void-printExternalbitmapbyte-bitmaparray)(byte[] bitmapArray)
+void [printExternalBitmap](#void-printexternalbitmap-byte---bitmaparray-)(byte[] bitmapArray)
 
-[comment]: <> (a tag is placed to enable linking) 
-<a id="printerStatus"></a> 
+
 <br/>
 
 ### int printerStatus()  
@@ -87,14 +115,15 @@ DEAD_SERVICE (-101),
 COULD_NOT_GET_STATUS (-102);
 ```
 
-<a id="cursorPosition"></a> 
+
 <br/>
+
 ### int cursorPosition()  
 Returns the position of the cursor .
 
 
-<a id="setCursorPosition"></a> 
 <br/>
+
 ### void setCursorPosition(int pos);  
 Sets the position of the cursor.
 
@@ -107,8 +136,8 @@ addTextToLine("$5.00",  Alignment.Left.ordinal());
 printLine();
 ```
 
-<a id="setFontFace"></a> 
 <br/>
+
 ### void setFontFace(int font)  
 Sets fonts face given the enumeration of it.
 
@@ -117,8 +146,8 @@ Sets fonts face given the enumeration of it.
 printerService.setFontFace( PrinterDefinitions.Font_E.SourceSansPro.ordinal() );
 ```
 
-<a id="setFontSize"></a> 
 <br/>
+
 ### void setFontSize(int fontSize)  
 Sets fontSize to given value. Minimum fontSize value is 8, maximum value is 144
 
@@ -126,8 +155,8 @@ Sets fontSize to given value. Minimum fontSize value is 8, maximum value is 144
 
 
 
-<a id="addTextToLine"></a> 
 <br/>
+
 ### void addTextToLine(String text, Alignment alignment)  
 Draws given string into line buffer, does not print bitmap automatically. Useful for creating lines that has different fonts and sizes within.  
 Alignment enumertaion has following values
@@ -137,13 +166,13 @@ Alignment enumertaion has following values
 
 > If alignment Left is selected, text is added starting from cursor position. Otherwise cursor position is ignored and not incremented.
 
-<a id="printLine"></a> 
 <br/>
+
 ### void printLine()  
 Prints buffer for current line.
     
-<a id="drawLine"></a> 
 <br/>
+
 ### void drawLine(int thickness, int verticalMargin, int horizontalMargin)  
 Draws and prints a horizontal line with given thickness and margins
 
@@ -153,8 +182,8 @@ Draws and prints a horizontal line with given thickness and margins
 
 > Horizontal margin should be a multiple of 8 or it will be rounded down.
 
-<a id="printText"></a> 
 <br/>
+
 ### void printText(String text)  
 Prints given text, it can be multiline and can contain tabs. Print is excuted immediately, does not require another command to start.
 
@@ -162,8 +191,8 @@ Text can also include styling commands like setFontFace, setFontSize. This enabl
 
 Styled text should start with tag `"<s>"`.  You can put styling codes into text  yourself, or use StyledString class which provides functions and processes a member string to send. To see a full implementation and example usage of it, see the example project (All available functionality is commented in StyledString class).
 
-<a id="printBitmap"></a> 
 <br/>
+
 ### void printBitmap(String name, int verticalMargin)  
 Prints a preloaded monochrome bitmap file
 
@@ -175,41 +204,41 @@ Prints a preloaded monochrome bitmap file
     printerService.printBitmap("ykb", 0); // print ykb.bmp with no extra margin
 ```
 
-<a id="addSpace"></a> 
 <br/>
+
 ### void addSpace(int pixelHeight)  
 Leaves a blank space of given height in pixels. Takes effect immediately, not a buffered command.
 
-<a id="addEmptyLines"></a> 
 <br/>
+
 ### void addEmptyLines(float lines)  
 Leaves a blank space of given height in lineHeights (1.5 lines, for example).  Takes effect immediately, not a buffered command.
 
-<a id="lineSpacing"></a> 
 <br/>
+
 ### float lineSpacing()  
 Gets line spacing.
 
-<a id="setLineSpacing"></a> 
 <br/>
+
 ### void setLineSpacing(float f)  
 Sets line spacing.
 
-<a id="printDensity"></a> 
 <br/>
+
 ### int printDensity()  
 Returns current print density.  
 See [definition of print density.](#printDensityDef)
 
-<a id="setPrintDensity"></a> 
 <br/>
+
 ### void setPrintDensity(int density)  
 Sets print density. It can take values from 60 to 140 percent. Values out of this ranges are ignored.  
 See [definition of print density.](#printDensityDef)
 
 
-<a id="printExternalBitmap"></a> 
 <br/>
+
 ### void printExternalBitmap(byte[] bitmapArray)
 
 Prints a monochrome bitmap file which is provided in byte array form.
