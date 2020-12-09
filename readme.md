@@ -60,7 +60,7 @@ Related functions:  [printDensity](#printDensity),  [setPrintDensity](#setPrintD
 [int printDensity()](#int-printdensity)  
 [void setPrintDensity(int density)](#void-setprintdensityint-density)  
 [void setPrintDensity(int density)](#void-setprintdensityint-density)  
-[void printExternalBitmap(byte[] bitmapArray)](#void-printExternalBitmapbyte[]-bitmapArray)
+[void printExternalBitmap(byte[] bitmapArray)](#void-printExternalBitmapbyte-bitmapArray)
 
 [comment]: <> (a tag is placed to enable linking) 
 <a id="printerStatus"></a> 
