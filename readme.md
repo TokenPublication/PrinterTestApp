@@ -1,10 +1,8 @@
-# Introduction
+## Introduction
 
 Printer service is a service which provides a simplified api for printer related operations. This document describes usage of the available printer functions.
 
 <br/>
-
-# Usage From a Java Application
 
 ## Prerequisites
 
@@ -103,10 +101,10 @@ Sets the position of the cursor.
 
 > Example  
 ```java
-    void addTextToLine("Apple",  Alignment.Left.ordinal());
-    void setCursorPosition(40 * 8);
-    void addTextToLine("$5.00",  Alignment.Left.ordinal());
-    void printLine();
+addTextToLine("Apple",  Alignment.Left.ordinal());
+setCursorPosition(40 * 8);
+addTextToLine("$5.00",  Alignment.Left.ordinal());
+printLine();
 ```
 
 <a id="setFontFace"></a> 
