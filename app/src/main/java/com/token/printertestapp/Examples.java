@@ -5,6 +5,7 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.token.printerlib.BitmapChecker;
 import com.token.printerlib.PrinterDefinitions;
 import com.token.printerlib.PrinterDefinitions.Font_E;
 import com.token.printerlib.PrinterDefinitions.Alignment;
@@ -442,7 +443,12 @@ public class Examples {
                 return;
             }
 
-            printerService.printExternalBitmap(bitmapFile);
+            if (BitmapChecker.isMonochromeBitmap(byteArray))
+            {
+                printerService.printExternalBitmap(byteArray);
+            }
+
+
             printerService.addSpace(bottomMargin);
         });
 
