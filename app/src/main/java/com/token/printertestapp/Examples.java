@@ -5,7 +5,6 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.token.printerlib.BitmapChecker;
 import com.token.printerlib.PrinterDefinitions;
 import com.token.printerlib.PrinterDefinitions.Font_E;
 import com.token.printerlib.PrinterDefinitions.Alignment;
@@ -434,7 +433,7 @@ public class Examples {
         toast.show();
     }
 
-    static void PrintBitmapReceipt(final byte[] bitmapFile)
+    static void PrintExternalBitmapReceipt(final byte[] bitmapFile)
     {
         PrinterService.getService(printerService -> {
 
@@ -447,10 +446,18 @@ public class Examples {
         });
     }
 
-    static void PrintBitmapReceiptWithStyledStringMethod(final byte[] bitmapFile)
+    static void PrintExternalBitmapReceiptWithStyledStringMethod(final byte[] bitmapFile)
     {
         StyledString styledText = new StyledString();
         styledText.printExternalBitmap(bitmapFile);
+        styledText.addSpace(bottomMargin);
+        styledText.print(PrinterService.getService());
+    }
+
+    static void PrintBitmapReceiptWithStyledStringMethod(final Context ctx, final byte[] bitmapFile)
+    {
+        StyledString styledText = new StyledString();
+        styledText.printBitmap(ctx, bitmapFile);
         styledText.addSpace(bottomMargin);
         styledText.print(PrinterService.getService());
     }

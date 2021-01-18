@@ -233,7 +233,7 @@ public class MainActivity extends AppCompatActivity {
         byte[] bitmapFile = getBitmapReceiptArray(this, R.raw.fis);
 
         if(bitmapFile != null)
-            Examples.PrintBitmapReceipt(bitmapFile);
+            Examples.PrintBitmapReceiptWithStyledStringMethod(this, bitmapFile);
     }
 
     public static byte[] getBitmapReceiptArray(Context context, int resourceId) {
