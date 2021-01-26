@@ -15,6 +15,7 @@
   - [void drawLine(int thickness, int verticalMargin, int horizontalMargin)](#void-drawlineint-thickness-int-verticalmargin-int-horizontalmargin)
   - [void printText(String text)](#void-printtextstring-text)
   - [void printBitmap(String name, int verticalMargin)](#void-printbitmapstring-name-int-verticalmargin)
+  - [void printBitmap(Context context, byte[] bitmapArray)](#void-printbitmapcontext-context-byte-bitmaparray)
   - [void addSpace(int pixelHeight)](#void-addspaceint-pixelheight)
   - [void addEmptyLines(float lines)](#void-addemptylinesfloat-lines)
   - [float lineSpacing()](#float-linespacing)
@@ -81,7 +82,9 @@ void [addTextToLine](#void-addtexttolinestring-text-alignment-alignment)(String 
 void [printLine](#void-printline)()  
 void [drawLine](#void-drawlineint-thickness-int-verticalmargin-int-horizontalmargin)(int thickness, int verticalMargin, int horizontalMargin)  
 void [printText](#void-printtextstring-text)(String text)  
-void [printBitmap](#void-printbitmapstring-name-int-verticalmargin)(String name, int verticalMargin)  
+void [printBitmap](#void-printbitmapstring-name-int-verticalmargin)(String name, int 
+verticalMargin)  
+void [printBitmap](#void-printbitmapcontext-context-byte-bitmaparray)(Context ctx, byte[] bitmapArray)  
 void [addSpace](#void-addspaceint-pixelheight)(int pixelHeight)  
 void [addEmptyLines](#void-addemptylinesfloat-lines)(float lines)  
 float [lineSpacing](#float-linespacing)()  
@@ -206,6 +209,36 @@ Prints a preloaded monochrome bitmap file
 
 <br/>
 
+### void printBitmap(Context context, byte[] bitmapArray)  
+Prints given bitmap array
+
+**context:** Android app context
+**bitmapArray:** Monochrome bitmap array to be printed
+
+To make sure if your byte array is properly formatted bitmap, you can check it by BitmapChecker before printing:
+
+```java
+if (BitmapChecker.isMonochromeBitmap(byteArray))
+{
+    printerService.printExternalBitmap(byteArray);
+}
+```
+
+> This function is available only if you are using StyledString markup.
+
+<br/>
+
+> Example
+```java
+    StyledString styledText = new StyledString();
+    styledText.printBitmap(ctx, bitmap);
+    styledText.addSpace(bottomMargin);
+    styledText.print(PrinterService.getService());
+```
+    
+<br/>
+
+
 ### void addSpace(int pixelHeight)  
 Leaves a blank space of given height in pixels. Takes effect immediately, not a buffered command.
 
@@ -255,31 +288,7 @@ if (BitmapChecker.isMonochromeBitmap(byteArray))
 }
 ```
 
-Following examples use this function
-
-```java
-    static void PrintBitmapReceipt(final byte[] bitmapFile)
-    {
-        PrinterService.getService(printerService -> {
-
-            if (printerService == null) {
-                Log.d(TAG, "Printer Service was null");
-                return;
-            }
-            printerService.printExternalBitmap(bitmapFile);
-            printerService.addSpace(bottomMargin);
-        });
-    }
-
-    static void PrintBitmapReceiptWithStyledStringMethod(final byte[] bitmapFile)
-    {
-        StyledString styledText = new StyledString();
-        styledText.printExternalBitmap(bitmapFile);
-        styledText.addSpace(bottomMargin);
-        styledText.print(PrinterService.getService());
-    }
-```
-
+> Note: This function is suitable for printing small bitmaps like logos. If your bitmap exceeds a certain size (30kb for now), no bitmap will be printed. If you need a larger bitmap to be printed, use void [printBitmap](#void-printbitmapcontext-context-byte-bitmaparray) function instead.
 
 <br/>
 
