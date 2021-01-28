@@ -276,7 +276,7 @@ See [definition of print density.](#definitions)
 
 Prints a monochrome bitmap file which is provided in byte array form.
 
-byte array should be smaller than 300 KB and must be a monochrome bitmap format
+byte array should be smaller than 30 KB and must be a monochrome bitmap format
 
 
 To make sure if your byte array is properly formatted bitmap, you can check it by BitmapChecker before printing:
