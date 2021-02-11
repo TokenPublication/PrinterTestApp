@@ -224,7 +224,9 @@ if (BitmapChecker.isMonochromeBitmap(byteArray))
 }
 ```
 
-> This function is available only if you are using StyledString markup.
+> This function is available only if you are using StyledString markup. 
+
+> Receipts using this function will be printed with a reduced printDensity. Output might look faded if you use thin fonts.
 
 <br/>
 
