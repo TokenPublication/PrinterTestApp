@@ -91,7 +91,6 @@ float [lineSpacing](#float-linespacing)()
 void [setLineSpacing](#void-setlinespacingfloat-f)(float f)  
 int [printDensity](#int-printdensity)()  
 void [setPrintDensity](#void-setprintdensityint-density)(int density)  
-void [setPrintDensity](#void-setprintdensityint-density)(int density)  
 void [printExternalBitmap](#void-printexternalbitmap-byte---bitmaparray-)(byte[] bitmapArray)
 
 
