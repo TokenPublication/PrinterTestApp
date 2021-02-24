@@ -292,6 +292,8 @@ if (BitmapChecker.isMonochromeBitmap(byteArray))
 
 > Note: This function is suitable for printing small bitmaps like logos. If your bitmap exceeds a certain size (30kb for now), no bitmap will be printed. If you need a larger bitmap to be printed, use void [printBitmap](#void-printbitmapcontext-context-byte-bitmaparray) function instead.
 
+> Receipts using this function will be printed with a reduced printDensity. Output might look faded if you use thin fonts.
+
 <br/>
 
 ## Miscellaneous 
