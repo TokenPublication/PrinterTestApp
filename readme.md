@@ -196,14 +196,15 @@ Styled text should start with tag `"<s>"`.  You can put styling codes into text 
 <br/>
 
 ### void printBitmap(String name, int verticalMargin)  
-Prints a preloaded monochrome bitmap file
+Prints a preloaded monochrome bitmap file or a file whose absolute can be given.
 
-**name:** name of the preloaded monochrome bitmap file without .bmp extension  
+**name:** name of the preloaded monochrome bitmap file without .bmp extension or an absolute path  
 **verticalMargin:** The empty space that will be left before and after bmp picture, in pixels
 
 > Example
 ```java
     printerService.printBitmap("ykb", 0); // print ykb.bmp with no extra margin
+    printerService.printBitmap("/absolutePath/myLogo.bmp", 0); // print myLogo.bmp whose path is provided (with no extra margin)
 ```
 
 <br/>

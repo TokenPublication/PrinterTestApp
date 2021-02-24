@@ -461,4 +461,13 @@ public class Examples {
         styledText.addSpace(bottomMargin);
         styledText.print(PrinterService.getService());
     }
+
+    static void PrintBitmapReceiptWithAbsolutePathMethod(String absolutePath)
+    {
+        Log.i(TAG, "PrintBitmapReceiptWithAbsolutePathMethod: " + absolutePath);
+        StyledString styledText = new StyledString();
+        styledText.printBitmap(absolutePath);
+        styledText.addSpace(bottomMargin);
+        styledText.print(PrinterService.getService());
+    }
 }
