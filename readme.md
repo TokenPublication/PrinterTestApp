@@ -212,7 +212,7 @@ Prints a preloaded monochrome bitmap file or a file whose absolute can be given.
 ### void printBitmap(Context context, byte[] bitmapArray)  
 Prints given bitmap array
 
-**context:** Android app context
+**context:** Android app context  
 **bitmapArray:** Monochrome bitmap array to be printed
 
 To make sure if your byte array is properly formatted bitmap, you can check it by BitmapChecker before printing:
