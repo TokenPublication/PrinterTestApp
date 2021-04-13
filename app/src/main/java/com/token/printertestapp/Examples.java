@@ -2,6 +2,7 @@ package com.token.printertestapp;
 
 import android.content.Context;
 import android.util.Log;
+import android.util.Printer;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -456,18 +457,84 @@ public class Examples {
 
     static void PrintBitmapReceiptWithStyledStringMethod(final Context ctx, final byte[] bitmapFile)
     {
+        String text = "Boktan işler";
         StyledString styledText = new StyledString();
         styledText.printBitmap(ctx, bitmapFile);
+        styledText.setFontFace(Font_E.Sans_Semi_Bold);
+        styledText.setFontSize(16);
+        styledText.setLineSpacing(1.4f);
+        styledText.addTextToLine("SOME RECEIPT", Alignment.Center);
+        styledText.endLine();
+
+        styledText.setFontFace(Font_E.SourceSansPro);
+        styledText.setFontSize(14);
+        styledText.setLineSpacing(1.1f);
+        styledText.addTextToLine("Following qr code should read:");
+        styledText.endLine();
+        styledText.addTextToLine(text.length() > 25 ? text.substring(0,25) + "...": text);
+        styledText.endLine();
+
+        styledText.printQrCode(text, PrinterDefinitions.QR_Code_Error_Correction_Level.MEDIUM, 20);
         styledText.addSpace(bottomMargin);
+
         styledText.print(PrinterService.getService());
     }
 
     static void PrintBitmapReceiptWithAbsolutePathMethod(String absolutePath)
     {
-        Log.i(TAG, "PrintBitmapReceiptWithAbsolutePathMethod: " + absolutePath);
         StyledString styledText = new StyledString();
         styledText.printBitmap(absolutePath);
         styledText.addSpace(bottomMargin);
         styledText.print(PrinterService.getService());
     }
+
+    static void PrintQrWithDirectPrinterCommands(String text)
+    {
+        PrinterService.getService(printerService -> {
+
+            if (printerService == null) {
+                Log.d(TAG, "Printer Service was null");
+                return;
+            }
+
+            printerService.setFontFace(Font_E.Sans_Semi_Bold.ordinal());
+            printerService.setFontSize(16);
+            printerService.setLineSpacing(1.4f);
+            printerService.addTextToLine("SOME RECEIPT", Alignment.Center.ordinal());
+            printerService.printLine();
+
+            printerService.setFontFace(Font_E.SourceSansPro.ordinal());
+            printerService.setFontSize(13);
+            printerService.setLineSpacing(1.1f);
+            printerService.printText("Following QR code should read:\n\"" + (text.length() > 25 ? text.substring(0,25) + "...": text) + "\"");
+            printerService.printQrCode(text, PrinterDefinitions.QR_Code_Error_Correction_Level.MEDIUM.ordinal(), 20);
+            printerService.addSpace(bottomMargin);
+        });
+    }
+
+    static void PrintQrWithStyledString(String text)
+    {
+        StyledString styledText = new StyledString();
+
+        styledText.setFontFace(Font_E.Sans_Semi_Bold);
+        styledText.setFontSize(16);
+        styledText.setLineSpacing(1.4f);
+        styledText.addTextToLine("SOME RECEIPT", Alignment.Center);
+        styledText.endLine();
+
+        styledText.setFontFace(Font_E.SourceSansPro);
+        styledText.setFontSize(14);
+        styledText.setLineSpacing(1.1f);
+        styledText.addTextToLine("Following qr code should read:");
+        styledText.endLine();
+        styledText.addTextToLine(text.length() > 25 ? text.substring(0,25) + "...": text);
+        styledText.endLine();
+
+        styledText.printQrCode(text, PrinterDefinitions.QR_Code_Error_Correction_Level.MEDIUM, 20);
+        styledText.addSpace(bottomMargin);
+
+        //Log.i(TAG, "PrintQrWithStyledString: \n" + styledText.toString());
+        styledText.print(PrinterService.getService());
+    }
+
 }

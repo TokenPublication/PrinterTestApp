@@ -264,4 +264,12 @@ public class MainActivity extends AppCompatActivity {
 
         return bitmap;
     }
+
+    public void printQrCodeBtn(View view) {
+        EditText inputForQrCode = findViewById(R.id.qrEditText);
+
+        String text = inputForQrCode.getText().length() == 0 ? inputForQrCode.getHint().toString() : inputForQrCode.getText().toString();
+
+        Examples.PrintQrWithStyledString(text);
+    }
 }
