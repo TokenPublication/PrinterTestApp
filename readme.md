@@ -315,7 +315,7 @@ QUARTILE  // The QR Code can tolerate about 25% erroneous codewords
 HIGH  // The QR Code can tolerate about 30% erroneous codewords
 ```
 
-> MEDIUM is the default and suggested version. HIGH level of correction may result in bigger square code, which may cause each dot to be printed smaller.
+> MEDIUM is the default and suggested version. High level of correction may result in bigger square code, which may cause each dot to be printed smaller, especially if text is long.
 
 <br/>
 
