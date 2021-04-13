@@ -302,7 +302,7 @@ if (BitmapChecker.isMonochromeBitmap(byteArray))
 Prints given text in Qr Code form.
 
 **text:** Android app context  
-**correctionLvl:** ErrorCorrection Level for Qr Code generation Process.
+**correctionLvl:** ErrorCorrection Level for Qr Code generation Process.  
 **verticalMargin:** The empty space that will be left before and after Qr Code, in pixels.
 
 correctionLvl and verticalMargin parameters is optional when this function is called via styled string method.
