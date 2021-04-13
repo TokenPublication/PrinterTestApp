@@ -23,6 +23,7 @@
   - [int printDensity()](#int-printdensity)
   - [void setPrintDensity(int density)](#void-setprintdensityint-density)
   - [void printExternalBitmap(byte[] bitmapArray)](#void-printexternalbitmapbyte-bitmaparray)
+  - [void printQrCode(String text, ErrorCorrectionLevel correctionLvl, int verticalMargin)](#void-printqrcodestring-text-errorcorrectionlevel-correctionlvl-int-verticalmargin)
 - [Miscellaneous](#miscellaneous)
   - [Subscribing To 'Printer State Changed' Broadcast](#subscribing-to-printer-state-changed-broadcast)
 - [Known Issues](#known-issues)
@@ -91,8 +92,8 @@ float [lineSpacing](#float-linespacing)()
 void [setLineSpacing](#void-setlinespacingfloat-f)(float f)  
 int [printDensity](#int-printdensity)()  
 void [setPrintDensity](#void-setprintdensityint-density)(int density)  
-void [printExternalBitmap](#void-printexternalbitmap-byte---bitmaparray-)(byte[] bitmapArray)
-
+void [printExternalBitmap](#void-printexternalbitmap-byte---bitmaparray-)(byte[] bitmapArray)  
+void [printQrCode](#void-printqrcodestring-text-errorcorrectionlevel-correctionlvl-int-verticalmargin)(String text, ErrorCorrectionLevel correctionLvl, int verticalMargin)
 
 <br/>
 
@@ -293,6 +294,28 @@ if (BitmapChecker.isMonochromeBitmap(byteArray))
 > Note: This function is suitable for printing small bitmaps like logos. If your bitmap exceeds a certain size (30kb for now), no bitmap will be printed. If you need a larger bitmap to be printed, use void [printBitmap](#void-printbitmapcontext-context-byte-bitmaparray) function instead.
 
 > Receipts using this function will be printed with a reduced printDensity. Output might look faded if you use thin fonts.
+
+<br/>
+
+### void printQrCode(String text, ErrorCorrectionLevel correctionLvl, int verticalMargin)
+
+Prints given text in Qr Code form.
+
+**text:** Android app context  
+**correctionLvl:** ErrorCorrection Level for Qr Code generation Process.
+**verticalMargin:** The empty space that will be left before and after Qr Code, in pixels.
+
+correctionLvl and verticalMargin parameters is optional when this function is called via styled string method.
+
+Error Correction Level Options:
+```cpp
+LOW  // The QR Code can tolerate about  7% erroneous codewords
+MEDIUM  // The QR Code can tolerate about 15% erroneous codewords.
+QUARTILE  // The QR Code can tolerate about 25% erroneous codewords
+HIGH  // The QR Code can tolerate about 30% erroneous codewords
+```
+
+> MEDIUM is the default and suggested version. HIGH level of correction may result in bigger square code, which may cause each dot to be printed smaller.
 
 <br/>
 
