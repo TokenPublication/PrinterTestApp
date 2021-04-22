@@ -270,6 +270,7 @@ public class MainActivity extends AppCompatActivity {
 
         String text = inputForQrCode.getText().length() == 0 ? inputForQrCode.getHint().toString() : inputForQrCode.getText().toString();
 
+        //Examples.PrintQrWithDirectPrinterCommands(text);
         Examples.PrintQrWithStyledString(text);
     }
 }

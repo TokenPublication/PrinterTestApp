@@ -531,7 +531,8 @@ public class Examples {
         styledText.endLine();
 
         styledText.printQrCode(text, PrinterDefinitions.QR_Code_Error_Correction_Level.MEDIUM, 20);
-        styledText.addSpace(bottomMargin);
+        styledText.paperCut();
+        //styledText.addSpace(bottomMargin);
 
         //Log.i(TAG, "PrintQrWithStyledString: \n" + styledText.toString());
         styledText.print(PrinterService.getService());
