@@ -14,8 +14,6 @@ import com.token.printerlib.StyledString;
 
 public class Examples {
 
-
-    public static final int bottomMargin = 120; // margin that is left after each print
     private static final String TAG = "Printer Service Examples";
 
     static void TestFonts() {
@@ -40,7 +38,7 @@ public class Examples {
                 }
 
             }
-            printerService.addSpace(bottomMargin);
+            printerService.finishPrintingProcedure();  // cuts the paper or adds necessary bottom space for manual cutting (depends on device)
         });
     }
 
@@ -58,7 +56,7 @@ public class Examples {
                 loremIpsumStr = loremIpsumStr.toUpperCase();
             ps.setLineSpacing(1.0f);
             ps.printText(loremIpsumStr);
-            ps.addSpace(bottomMargin);
+            ps.finishPrintingProcedure();  // cuts the paper or adds necessary bottom space for manual cutting (depends on device)
         });
     }
 
@@ -83,7 +81,7 @@ public class Examples {
                 text += "\nçÇğĞıİöÖşŞüÜ" + "\u20BA"; // turkish characters and turkish lira symbol
 
             ps.printText(text);
-            ps.addSpace(bottomMargin);
+            ps.finishPrintingProcedure();  // cuts the paper or adds necessary bottom space for manual cutting (depends on device)
         });
     }
 
@@ -163,7 +161,7 @@ public class Examples {
             ps.printText("Icetea(Regular)x1\t 2.00 ₺\n"
                     + "Pizza(Regular)x1\t 2.00 ₺");
 
-            ps.addSpace(bottomMargin);
+            ps.finishPrintingProcedure();  // cuts the paper or adds necessary bottom space for manual cutting (depends on device)
         });
     }
 
@@ -268,7 +266,8 @@ public class Examples {
         // you can add multiline text
         //styledText.addText("this is a multiline\ntext that can have \t\t tabs");
 
-        styledText.addSpace(bottomMargin);
+        //styledText.addSpace(bottomMargin);
+        styledText.finishPrintingProcedure();  // cuts the paper or adds necessary bottom space for manual cutting (depends on device)
 
         styledText.print(PrinterService.getService());
     }
@@ -289,7 +288,8 @@ public class Examples {
             ps.setFontSize(16);
             ps.addTextToLine("LARGE ", Alignment.Left.ordinal());
             ps.printLine();
-            ps.addSpace(bottomMargin);
+            //ps.addSpace(bottomMargin);
+            ps.finishPrintingProcedure();  // cuts the paper or adds necessary bottom space for manual cutting (depends on device)
         });
     }
 
@@ -443,7 +443,7 @@ public class Examples {
                 return;
             }
             printerService.printExternalBitmap(bitmapFile);
-            printerService.addSpace(bottomMargin);
+            printerService.finishPrintingProcedure();  // cuts the paper or adds necessary bottom space for manual cutting (depends on device)
         });
     }
 
@@ -451,13 +451,13 @@ public class Examples {
     {
         StyledString styledText = new StyledString();
         styledText.printExternalBitmap(bitmapFile);
-        styledText.addSpace(bottomMargin);
+        styledText.finishPrintingProcedure();  // cuts the paper or adds necessary bottom space for manual cutting (depends on device)
         styledText.print(PrinterService.getService());
     }
 
     static void PrintBitmapReceiptWithStyledStringMethod(final Context ctx, final byte[] bitmapFile)
     {
-        String text = "Boktan işler";
+        String text = "Example text";
         StyledString styledText = new StyledString();
         styledText.printBitmap(ctx, bitmapFile);
         styledText.setFontFace(Font_E.Sans_Semi_Bold);
@@ -475,7 +475,7 @@ public class Examples {
         styledText.endLine();
 
         styledText.printQrCode(text, PrinterDefinitions.QR_Code_Error_Correction_Level.MEDIUM, 20);
-        styledText.addSpace(bottomMargin);
+        styledText.finishPrintingProcedure();  // cuts the paper or adds necessary bottom space for manual cutting (depends on device)
 
         styledText.print(PrinterService.getService());
     }
@@ -484,7 +484,7 @@ public class Examples {
     {
         StyledString styledText = new StyledString();
         styledText.printBitmap(absolutePath);
-        styledText.addSpace(bottomMargin);
+        styledText.finishPrintingProcedure();  // cuts the paper or adds necessary bottom space for manual cutting (depends on device)
         styledText.print(PrinterService.getService());
     }
 
@@ -508,7 +508,7 @@ public class Examples {
             printerService.setLineSpacing(1.1f);
             printerService.printText("Following QR code should read:\n\"" + (text.length() > 25 ? text.substring(0,25) + "...": text) + "\"");
             printerService.printQrCode(text, PrinterDefinitions.QR_Code_Error_Correction_Level.MEDIUM.ordinal(), 20);
-            printerService.addSpace(bottomMargin);
+            printerService.finishPrintingProcedure();  // cuts the paper or adds necessary bottom space for manual cutting (depends on device)
         });
     }
 
