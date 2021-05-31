@@ -24,6 +24,7 @@
   - [void setPrintDensity(int density)](#void-setprintdensityint-density)
   - [void printExternalBitmap(byte[] bitmapArray)](#void-printexternalbitmapbyte-bitmaparray)
   - [void printQrCode(String text, ErrorCorrectionLevel correctionLvl, int verticalMargin)](#void-printqrcodestring-text-errorcorrectionlevel-correctionlvl-int-verticalmargin)
+  - [void finishPrintingProcedure()](#void-finishprintingprocedure)
 - [Miscellaneous](#miscellaneous)
   - [Subscribing To 'Printer State Changed' Broadcast](#subscribing-to-printer-state-changed-broadcast)
 - [Known Issues](#known-issues)
@@ -93,7 +94,8 @@ void [setLineSpacing](#void-setlinespacingfloat-f)(float f)
 int [printDensity](#int-printdensity)()  
 void [setPrintDensity](#void-setprintdensityint-density)(int density)  
 void [printExternalBitmap](#void-printexternalbitmap-byte---bitmaparray-)(byte[] bitmapArray)  
-void [printQrCode](#void-printqrcodestring-text-errorcorrectionlevel-correctionlvl-int-verticalmargin)(String text, ErrorCorrectionLevel correctionLvl, int verticalMargin)
+void [printQrCode](#void-printqrcodestring-text-errorcorrectionlevel-correctionlvl-int-verticalmargin)(String text, ErrorCorrectionLevel correctionLvl, int verticalMargin)  
+void [finishPrintingProcedure](#void-finishPrintingProcedure)()  
 
 <br/>
 
@@ -316,6 +318,12 @@ HIGH  // The QR Code can tolerate about 30% erroneous codewords
 ```
 
 > MEDIUM is the default and suggested version. High level of correction may result in bigger square code, which may cause each dot to be printed smaller, especially if text is long.
+
+<br/>
+
+### void finishPrintingProcedure()  
+ 
+ Should be called at the end of each receipt. Cuts the paper or adds necessary space for manuel cutting (depends on device).
 
 <br/>
 
