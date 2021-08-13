@@ -185,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
                 EditText customText = (EditText) findViewById(R.id.customText);
                 String str = customText.getText().toString();
                 iPrinterService.printText(str);
-                iPrinterService.addSpace(Examples.bottomMargin);
+                iPrinterService.finishPrintingProcedure();
             }
             catch (RemoteException e)
             {
