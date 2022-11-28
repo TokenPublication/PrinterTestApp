@@ -165,7 +165,7 @@ public class Examples {
         });
     }
 
-    static void PrintSampleReceipt2()
+    static void PrintSampleReceipt2(Context context)
     {
         StyledString styledText = new StyledString();
 
@@ -261,7 +261,7 @@ public class Examples {
         //styledText.printBitmap("ykb, 20");
 
 
-        styledText.printBitmap("ykb");
+        styledText.printLogo(context);
 
         // you can add multiline text
         //styledText.addText("this is a multiline\ntext that can have \t\t tabs");

@@ -214,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void sampleReceiptBtn2(View v) {
-        Examples.PrintSampleReceipt2();
+        Examples.PrintSampleReceipt2(getApplicationContext());
         restoreFontSettings();
     }
 
