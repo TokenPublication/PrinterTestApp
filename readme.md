@@ -238,7 +238,7 @@ if (BitmapChecker.isMonochromeBitmap(byteArray))
     StyledString styledText = new StyledString();
     styledText.printBitmap(ctx, bitmap);
     styledText.addSpace(bottomMargin);
-    styledText.print(PrinterService.getService());
+    styledText.print(PrinterService.getService(ctx));
 ```
     
 <br/>

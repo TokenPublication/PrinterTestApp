@@ -1,7 +1,5 @@
 package com.token.printertestapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.IntentFilter;
@@ -17,10 +15,12 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.token.printerlib.IPrinterService;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.token.printerlib.PrinterBroadcastReceiver;
 import com.token.printerlib.PrinterDefinitions;
 import com.token.printerlib.PrinterService;
+import com.tokeninc.printerservice.IPrinterService;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setFont(PrinterDefinitions.Font_E font) {
 
-        IPrinterService iPrinterService = PrinterService.getService();
+        IPrinterService iPrinterService = PrinterService.getService(getApplicationContext());
         if (iPrinterService == null) {
             Log.d(TAG, "PrinterService is null");
         }
@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setFontSize(int fontSize)
     {
-        IPrinterService iPrinterService = PrinterService.getService();
+        IPrinterService iPrinterService = PrinterService.getService(getApplicationContext());
 
         if (iPrinterService == null) {
             Log.d(TAG, "PrinterService is null");
@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onCustomPrintBtn(View v) {
 
-        IPrinterService iPrinterService = PrinterService.getService();
+        IPrinterService iPrinterService = PrinterService.getService(getApplicationContext());
 
         if (iPrinterService == null) {
             Log.d(TAG, "PrinterService is null");
@@ -196,20 +196,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onTestFontsBtn(View v) {
-        Examples.TestFonts();
+        Examples.TestFonts(getApplicationContext());
         restoreFontSettings();
     }
 
     public void onLoremIpsumBtn(View v) {
-        Examples.PrintLoremIpsum(true);
+        Examples.PrintLoremIpsum(getApplicationContext(),true);
     }
 
     public void onPrintAllBtn(View v) {
-        Examples.PrintAllCharacters(true);
+        Examples.PrintAllCharacters(getApplicationContext(),true);
     }
 
     public void sampleReceiptBtn(View v) {
-        Examples.PrintSampleReceipt();
+        Examples.PrintSampleReceipt(getApplicationContext());
         restoreFontSettings();
     }
 
@@ -219,12 +219,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void changingSizesTestBtn(View v) {
-        Examples.changingSizesTest();
+        Examples.changingSizesTest(getApplicationContext());
         restoreFontSettings();
     }
 
     public void checkstatusBtn(View v) {
-        PrinterDefinitions.PrinterErrorCode errCode= Examples.checkStatus();
+        PrinterDefinitions.PrinterErrorCode errCode= Examples.checkStatus(getApplicationContext());
         Examples.ToastStatus(this, errCode);
     }
 
@@ -271,6 +271,6 @@ public class MainActivity extends AppCompatActivity {
         String text = inputForQrCode.getText().length() == 0 ? inputForQrCode.getHint().toString() : inputForQrCode.getText().toString();
 
         //Examples.PrintQrWithDirectPrinterCommands(text);
-        Examples.PrintQrWithStyledString(text);
+        Examples.PrintQrWithStyledString(getApplicationContext(),text);
     }
 }

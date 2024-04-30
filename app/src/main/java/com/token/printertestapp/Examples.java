@@ -11,13 +11,14 @@ import com.token.printerlib.PrinterDefinitions.Font_E;
 import com.token.printerlib.PrinterDefinitions.Alignment;
 import com.token.printerlib.PrinterService;
 import com.token.printerlib.StyledString;
+import com.tokeninc.printerservice.IPrinterService;
 
 public class Examples {
 
     private static final String TAG = "Printer Service Examples";
 
-    static void TestFonts() {
-        PrinterService.getService( printerService -> {
+    static void TestFonts(Context context) {
+        PrinterService.getService( context, printerService -> {
 
             if (printerService == null) {
                 Log.d(TAG, "Printer Service was null");
@@ -42,9 +43,9 @@ public class Examples {
         });
     }
 
-    static void PrintLoremIpsum(boolean uppercase)
+    static void PrintLoremIpsum(Context context, boolean uppercase)
     {
-        PrinterService.getService( ps -> {
+        PrinterService.getService( context, ps -> {
 
             if (ps == null) {
                 Log.d(TAG, "Printer Service was null");
@@ -60,9 +61,9 @@ public class Examples {
         });
     }
 
-    static void PrintAllCharacters(boolean includeTurkishCharacters)
+    static void PrintAllCharacters(Context context, boolean includeTurkishCharacters)
     {
-        PrinterService.getService( ps -> {
+        PrinterService.getService( context, ps -> {
 
             if (ps == null) {
                 Log.d(TAG, "Printer Service was null");
@@ -85,10 +86,10 @@ public class Examples {
         });
     }
 
-    static void PrintSampleReceipt() {
+    static void PrintSampleReceipt(Context context) {
         final int lineThickness = 2;
 
-        PrinterService.getService(ps -> {
+        PrinterService.getService(context, ps -> {
 
             if (ps == null) {
                 Log.d(TAG, "Printer Service was null");
@@ -269,12 +270,12 @@ public class Examples {
         //styledText.addSpace(bottomMargin);
         styledText.finishPrintingProcedure();  // cuts the paper or adds necessary bottom space for manual cutting (depends on device)
 
-        styledText.print(PrinterService.getService());
+        styledText.print(PrinterService.getService(context));
     }
 
-    static void changingSizesTest()
+    static void changingSizesTest(Context context)
     {
-        PrinterService.getService(ps -> {
+        PrinterService.getService(context, ps -> {
 
             if (ps == null) {
                 Log.d(TAG, "Printer Service was null");
@@ -293,7 +294,7 @@ public class Examples {
         });
     }
 
-    static void _48LettersTest()
+    static void _48LettersTest(Context context)
     {
         final String _48CharsString = "ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ 123456789012345678";
         StyledString styledText = new StyledString();
@@ -398,14 +399,14 @@ public class Examples {
         styledText.endLine();
 
         styledText.addSpace(100);
-        styledText.print(PrinterService.getService());
+        styledText.print(PrinterService.getService(context));
     }
 
-    static PrinterDefinitions.PrinterErrorCode checkStatus()
+    static PrinterDefinitions.PrinterErrorCode checkStatus(Context context)
     {
         try
         {
-            return PrinterDefinitions.PrinterErrorCode.GetValue(PrinterService.getService().printerStatus());
+            return PrinterDefinitions.PrinterErrorCode.GetValue(PrinterService.getService(context).printerStatus());
         }
         catch (Exception e)
         {
@@ -434,9 +435,9 @@ public class Examples {
         toast.show();
     }
 
-    static void PrintExternalBitmapReceipt(final byte[] bitmapFile)
+    static void PrintExternalBitmapReceipt(Context context, final byte[] bitmapFile)
     {
-        PrinterService.getService(printerService -> {
+        PrinterService.getService(context, printerService -> {
 
             if (printerService == null) {
                 Log.d(TAG, "Printer Service was null");
@@ -447,12 +448,12 @@ public class Examples {
         });
     }
 
-    static void PrintExternalBitmapReceiptWithStyledStringMethod(final byte[] bitmapFile)
+    static void PrintExternalBitmapReceiptWithStyledStringMethod(Context context, final byte[] bitmapFile)
     {
         StyledString styledText = new StyledString();
         styledText.printExternalBitmap(bitmapFile);
         styledText.finishPrintingProcedure();  // cuts the paper or adds necessary bottom space for manual cutting (depends on device)
-        styledText.print(PrinterService.getService());
+        styledText.print(PrinterService.getService(context));
     }
 
     static void PrintBitmapReceiptWithStyledStringMethod(final Context ctx, final byte[] bitmapFile)
@@ -477,20 +478,20 @@ public class Examples {
         styledText.printQrCode(text, PrinterDefinitions.QR_Code_Error_Correction_Level.MEDIUM, 20);
         styledText.finishPrintingProcedure();  // cuts the paper or adds necessary bottom space for manual cutting (depends on device)
 
-        styledText.print(PrinterService.getService());
+        styledText.print(PrinterService.getService(ctx));
     }
 
-    static void PrintBitmapReceiptWithAbsolutePathMethod(String absolutePath)
+    static void PrintBitmapReceiptWithAbsolutePathMethod(Context context, String absolutePath)
     {
         StyledString styledText = new StyledString();
         styledText.printBitmap(absolutePath);
         styledText.finishPrintingProcedure();  // cuts the paper or adds necessary bottom space for manual cutting (depends on device)
-        styledText.print(PrinterService.getService());
+        styledText.print(PrinterService.getService(context));
     }
 
-    static void PrintQrWithDirectPrinterCommands(String text)
+    static void PrintQrWithDirectPrinterCommands(Context context, String text)
     {
-        PrinterService.getService(printerService -> {
+        PrinterService.getService(context, printerService -> {
 
             if (printerService == null) {
                 Log.d(TAG, "Printer Service was null");
@@ -512,7 +513,7 @@ public class Examples {
         });
     }
 
-    static void PrintQrWithStyledString(String text)
+    static void PrintQrWithStyledString(Context context, String text)
     {
         StyledString styledText = new StyledString();
 
@@ -535,7 +536,7 @@ public class Examples {
         //styledText.addSpace(bottomMargin);
 
         //Log.i(TAG, "PrintQrWithStyledString: \n" + styledText.toString());
-        styledText.print(PrinterService.getService());
+        styledText.print(PrinterService.getService(context));
     }
 
 }
